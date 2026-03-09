@@ -1,0 +1,19 @@
+name: Test dismiss stale approvals
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  actions: read
+  contents: read
+  pull-requests: write
+
+jobs:
+  dismiss:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
